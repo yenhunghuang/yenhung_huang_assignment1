@@ -1,0 +1,24 @@
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+th, td {
+    background-color: #96D4D4;
+}
+
+#title {
+  font-size:22px;
+  color: grey;
+}
+
+.overTwenty {
+  color: greenyellow;
+}
+
+#search {
+  background-color: grey;
+  padding-left: 20px;
+  border-radius: 12px;
+}
+
