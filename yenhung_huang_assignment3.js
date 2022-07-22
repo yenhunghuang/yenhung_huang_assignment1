@@ -33,24 +33,30 @@ const tableInfo = {
 
 //Implement the table
 
-let studentInfo = "<table>";
+let studentInfo = document.createElement("div");
+let tableRow = document.createElement("tr");
 
-studentInfo += "<tr>";
-for (let i in tableInfo.tableHeader)
-  studentInfo += "<td>" + tableInfo.tableHeader[i] + "</td>";
-studentInfo += "</tr>";
+tableInfo.tableHeader.map((ele) => {
+  let tableTitle = document.createElement("th");
+  tableTitle.textContent = ele;
+  tableRow.appendChild(tableTitle);
+});
+studentInfo.appendChild(tableRow);
 
-for (let i in tableInfo.tableContent) {
-  studentInfo += "<tr>";
-  for (let j in tableInfo.tableContent[i]) {
-    studentInfo += "<td>" + tableInfo.tableContent[i][j] + "</td>";
-  }
-  studentInfo += "</tr>";
-}
+tableInfo.tableContent.map((ele) => {
+  let tableDataRow = document.createElement("tr");
+  Object.values(ele).map((n) => {
+    let tableData = document.createElement("td");
+    tableData.textContent = n;
+    tableDataRow.appendChild(tableData);
+  });
+  studentInfo.appendChild(tableDataRow);
+});
 
-studentInfo += "</table>";
-
-document.getElementById("studentTable").innerHTML = studentInfo;
+document.body.insertBefore(
+  studentInfo,
+  document.querySelector(".title").nextSibling
+);
 
 //question2
 //Oderlist
@@ -58,10 +64,10 @@ const list = ["HTML", "JavaScript", "CSS", "React", "Redux", "Java"];
 
 let oderList = document.getElementById("oderList");
 
-list.forEach((ele) => {
+list.map((ele) => {
   let li = document.createElement("li");
 
-  li.innerText = ele;
+  li.textContent = ele;
 
   oderList.appendChild(li);
 });
@@ -69,10 +75,10 @@ list.forEach((ele) => {
 //Unoderlist
 let unoderList = document.getElementById("unoderList");
 
-list.forEach((ele) => {
+list.map((ele) => {
   let li = document.createElement("li");
 
-  li.innerText = ele;
+  li.textContent = ele;
 
   unoderList.appendChild(li);
 });
@@ -91,7 +97,7 @@ const dropDownList = [
 
 let select = document.getElementById("select");
 
-dropDownList.forEach((ele) => {
+dropDownList.map((ele) => {
   let option = document.createElement("option");
   option.value = ele.value;
   option.text = ele.content;
